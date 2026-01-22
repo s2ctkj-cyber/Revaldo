@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Network Monitoring</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background-color: #1a1a2e;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.server-card {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.status-box {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.online {
+    background-color: #2ecc71;
+    color: black;
+}
+
+.offline {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.maintenance {
+    background-color: #f1c40f;
+    color: black;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: #e94560;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+</style>
+</head>
+
+<body>
+
+<h1>NETWORK STATUS DASHBOARD - SMK TKJ</h1>
+
+<div class="container">
+
+    <!-- SERVER 1 -->
+    <div class="server-card">
+        <div class="icon">📡</div>
+        <h3>Mikrotik Gateway</h3>
+        <p>IP: 192.168.1.1</p>
+        <p>Uptime: 24 Jam</p>
+        <div class="status-box online">STATUS: ONLINE</div>
+    </div>
+
+    <!-- SERVER 2 -->
+    <div class="server-card">
+        <div class="icon">💻</div>
+        <h3>Server CBT Ujian</h3>
+        <p>IP: 192.168.10.200</p>
+        <p>Uptime: 5 Jam</p>
+        <div class="status-box offline">STATUS: OFFLINE</div>
+    </div>
+
+    <!-- SERVER 3 -->
+    <div class="server-card">
+        <div class="icon">🗄️</div>
+        <h3>NAS File Server</h3>
+        <p>IP: 192.168.50.5</p>
+        <p>Uptime: 12 Jam</p>
+        <div class="status-box maintenance">STATUS: MAINTENANCE</div>
+    </div>
+
+</div>
+
+<div style="text-align: center; margin-top: 40px;">
+    <button onclick="refreshStatus()">REFRESH STATUS</button>
+</div>
+
+<script>
+function refreshStatus() {
+    const statuses = document.querySelectorAll('.status-box');
+
+    statuses.forEach(status => {
+        const random = Math.floor(Math.random() * 3);
+
+        status.classList.remove('online', 'offline', 'maintenance');
+
+        if (random === 0) {
+            status.classList.add('online');
+            status.textContent = 'STATUS: ONLINE';
+        } 
+        else if (random === 1) {
+            status.classList.add('offline');
+            status.textContent = 'STATUS: OFFLINE';
+        } 
+        else {
+            status.classList.add('maintenance');
+            status.textContent = 'STATUS: MAINTENANCE';
+        }
+    });
+}
+</script>
+
+</body>
+</html>
